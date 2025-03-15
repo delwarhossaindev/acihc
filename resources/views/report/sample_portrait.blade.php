@@ -72,11 +72,10 @@
     <title>Sample Report</title>
     <meta charset="utf-8">
     <style type="text/css">
-    @page {
-    size: A4 landscape; 
-    margin: 15mm 20mm 15mm 20mm; 
-  
-}
+        @page {
+            size: A4 portrait; /* Explicitly set orientation */
+    margin: 20mm 15mm 15mm 15mm;
+        }
 
         @font-face {
             font-family: 'myEnglishFont';
@@ -158,7 +157,7 @@
                                                 </th>
                                                 <th
                                                     style="width: 45%; border-bottom: 1px solid #000; text-align: center; font-size: 15px; padding: 15px;">
-                                                    {{-- Page 1 of 3 <br> --}}
+                                                    Page 1 of 3 <br>
                                                     <p>Report No:
                                                         STB/REPORT/{{ sprintf('%04d', $sampleReport->SampleReportID) }}
                                                     </p>
