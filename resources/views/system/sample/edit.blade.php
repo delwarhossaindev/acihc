@@ -79,7 +79,7 @@
 
 
 
-            <div class="card" style="position: fixed; top:140px; z-index:9999; background:#e0fafa;">
+            <div class="card" style="background:#e0fafa;">
                 <div class="card-body">
                     <div class="row">
 
@@ -164,9 +164,9 @@
             </div>
 
             <div class="card mt-1 hideCard"
-                style="{{ $sampleReport->sampleReportDetails->count() ? 'position: relative; top:245px;' : 'display: none; position: relative; top:245px;' }}">
+            style="{{ $sampleReport->sampleReportDetails->count() ? '' : 'display: none;' }}">
 
-                <div class="card-body addRow">
+            <div class="card-body addRow" style="height: 500px; width: auto; overflow-y: scroll">
                     @foreach ($sampleReport->sampleReportDetails as $index => $value)
                         <br>
                         <div class="row" data-remove="{{ $index }}">
@@ -242,7 +242,7 @@
 
                 @php
                 $note = unserialize($sampleReport->Note);
-                  
+
                 @endphp
 
 
@@ -515,7 +515,7 @@
 
                     test =
                         `
-                              <b style="font-size: 16px; color: red;">${click}</b>  
+                              <b style="font-size: 16px; color: red;">${click}</b>
                             <div class="col-md-2">
                             <label for="TestID" class="form-label">Test</label><span style="color: red">*</span>
                             <select id="TestID" class="form-select custom-select TestID" name="${click}[TestID][]" required>
