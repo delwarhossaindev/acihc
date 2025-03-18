@@ -9,8 +9,8 @@
     <h4 class="fw-bold py-1 mb-3">Create Report</h4>
 
     <x-alert.alert-component />
-    
-    @php 
+
+    @php
         $protocol = $sample->protocol;
         $batchs     = @App\Models\Batch::query()->where('ProtocolID',$protocol->ProtocolID)
                         ->get()->unique('BatchNo');;
@@ -20,13 +20,13 @@
         $conditions = @App\Models\StudyType::query()
                         ->whereIn('StudyTypeID',$studyTypes)
                         ->get();
-        
+
     @endphp
-    
-    <form 
-        action="{{ route('sample.submit',$sample->SampleID) }}" 
+
+    <form
+        action="{{ route('sample.submit',$sample->SampleID) }}"
         method="post"
-        class="needs-validation" 
+        class="needs-validation"
         role="form"
         novalidate
     >
@@ -47,8 +47,8 @@
                         @foreach (\App\Models\SubTest::all() as $subTest)
                             <option value="sub{{ $subTest->SubtestID }}">
                                 {{ $subTest->SubTestName }}
-                            </option>       
-                            
+                            </option>
+
                          @endforeach
                     </select>
                 </div> -->
@@ -125,9 +125,9 @@
         </div>
     </div>
 
-    <div class="card mt-1 hideCard" style="display: none;">
-        <div class="card-body addRow">
-            
+    <div class="card mt-1 " >
+        <div class="card-body addRow" style="height: 500px; width: auto; overflow-y: scroll" >
+
         </div>
     </div>
     <div class="flaot-right" style="display: none;">
@@ -142,12 +142,12 @@
 
 @push('script')
 <script type="text/javascript">
-    
+
     var html = '';
     var click = 0;
     var type = 'text';
     var placeholder = '';
-    
+
     $('body').on('click','.btn-del-api', function(){
         $(this).parent().parent().remove(); remove
     });
@@ -186,7 +186,7 @@
     }
 
     $('body').on('click','.generate-form',function(){
-        
+
         //let TestID = $('#TestID').children("option:selected").val();
 
         let BatchID = $('#BatchID').children("option:selected").val();
@@ -195,7 +195,7 @@
         let StudyTypeID = $('#StudyTypeID').children("option:selected").val();
         let ConditionID = $('#ConditionID').children("option:selected").val();
         let Headline = $('#Headline').val();
-        
+
         // if(!TestID){
         //    alert('Please select Test!')
         //    return false;
@@ -230,7 +230,7 @@
            alert('Please select Condition!')
            return false;
         }
-        
+
         $('#BatchID').attr('disabled',true);
         $('#SkuID').attr('disabled',true);
         $('#PackID').attr('disabled',true);
@@ -256,8 +256,8 @@
         //             type = 'text';
         //             placeholder = 'min_max_avg'
         //         }else if(res.type == 'date') {
-        //             var nowDate = new Date(); 
-        //             var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate(); 
+        //             var nowDate = new Date();
+        //             var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate();
         //             type = 'date';
         //             placeholder = date;
         //         }else{
@@ -276,23 +276,25 @@
             },
             success: function(res) {
 
-                 test = `<div class="col-md-2">
+                 test = `
+                  <b style="font-size: 16px; color: red;">${click+1}</b>
+                 <div class="col-md-2">
                             <label for="TestID" class="form-label">Test</label><span style="color: red">*</span>
                             <select id="TestID" class="form-select custom-select TestID" name="${click}[TestID][]" required>
                                 <option value="" selected disabled style="color:#002244;font-family: impact;">Select Test</option>`;
-                                
+
                         $.each(res.Test, function(key, value) {
                             test += `<option  value="t${value.TestID}">${value.TestName}</option>`;
                         });
 
                         test += `<option value="" disabled style="color:#002244;font-family: impact;">Select Sub Test</option>`;
-                        
+
                         $.each(res.SubTest, function(key, value) {
                             test += `<option  value="sub${value.SubtestID}">${value.SubTestName}</option>`;
                         });
 
-                        test += `</select></div>`;
-              
+                        test += `</select></div> <br>`;
+
 
               $.each(res.month, (key, value) => {
                     html += `<div class="col-md-2">
@@ -304,10 +306,10 @@
                     </div>`;
                 });
 
-                
+
             },
         });
-        
+
         setTimeout(() => {
             getTemplate();
         }, 1000);
@@ -316,7 +318,7 @@
         test = '';
         type = '';
         placeholder = '';
-    });       
+    });
 
 </script>
 @endpush
