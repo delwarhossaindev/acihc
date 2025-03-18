@@ -1,6 +1,7 @@
 <table border="1" width="1000px" cellspacing="1" cellpadding="3" class="white" style="margin-top:2px;">
     @php
         $batchs = \App\Models\Batch::where('ProtocolID', $protocol->ProtocolID)->get();
+        //dd($batchs);
     @endphp
     <thead>
         <tr>

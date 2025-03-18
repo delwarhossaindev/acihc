@@ -272,10 +272,7 @@
     </div>
     <hr>
 
-    <div style="position: relative; top:240px; ">
-
-
-
+    <div >
         <h4 class="fw-bold py-1 mb-3">Sample Report Approval</h4>
 
         <form action="{{ route('sample.approval.store', $sampleReport->SampleReportID) }}" method="post"

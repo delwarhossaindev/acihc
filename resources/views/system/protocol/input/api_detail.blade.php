@@ -2,6 +2,7 @@
     if (isset($protocol)) {
         $product = $protocol->product;
         $protocolAPIDetails = \App\Models\ProtocolApiDetail::where('ProtocolID', $protocol->ProtocolID)->get();
+
         $ptCount = $protocolAPIDetails->count();
     }
 @endphp
@@ -17,7 +18,7 @@
                             <option value="" selected disabled>Select API Details</option>
                             @foreach ($product->apis as $api)
                                 <option value="{{ $api->ApiDetailID }}" {{ $api->ApiDetailID == $item->APIDetailID ? 'selected' : '' }}>
-                                    {{ $api->ApiDetailName }}
+                                    {{ $api->ApiDetailName.'('.$api->APIDetailSource.')' }}
                                 </option>
                             @endforeach
                         </select>
@@ -30,7 +31,7 @@
                     </div>
                     <div class="col-md-4 mt-3">
                         <label for="ExpDate" class="form-label">Exp/ Retest Date of API (mm/dd/yy)</label>
-                        <input type="text" name="ExpDate[]" class="form-control" value="{{ $item->ExpDate }}" placeholder="09/13/2022">
+                        <input type="date" name="ExpDate[]" class="form-control" value="{{ $item->ExpDate }}" placeholder="09/13/2022">
                         <div class="invalid-tooltip">Required</div>
                     </div>
                     <div class="col-md-1" style="margin-top: 43px;">
@@ -57,7 +58,7 @@
                 </div>
                 <div class="col-md-4 mt-3">
                     <label for="ExpDate" class="form-label">Exp/ Retest Date of API (mm/dd/yy)</label>
-                    <input type="text" name="ExpDate[]" class="form-control" placeholder="09/13/2022">
+                    <input type="date" name="ExpDate[]" class="form-control" placeholder="09/13/2022">
                     <div class="invalid-tooltip">Required</div>
                 </div>
                 <div class="col-md-1" style="margin-top: 43px;">

@@ -57,7 +57,6 @@ class Batch extends Model
         
 
         $protocol = Protocol::where('ProtocolID',$request->ProtocolID)->first();
-
         $sidate = new Carbon($request->SIDate);
         $stabilty_initiation_date = $sidate->addMonths($request->Month);
 
@@ -92,7 +91,7 @@ class Batch extends Model
             'BatchSize' => $request->BatchSize,
             'MfgDate' => date('Y-m-d', strtotime($request->MfgDate)),
             'ExpDate' => date('Y-m-d', strtotime($request->ExpDate)),
-            'SIDate' => $request->SIDate,
+            'SIDate' => $stabilityInitiationDate,
             'ProductID' => $protocol->ProductID,
             'ProtocolID' => $request->ProtocolID,
             'SkuID' => $request->SkuID,

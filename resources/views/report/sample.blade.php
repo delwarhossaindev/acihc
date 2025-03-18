@@ -10,7 +10,7 @@
         ->lockForUpdate()
         ->max('version_no');
 
-     $versionCount =     number_format((float)$versionCount, 2, '.', '') ?? number_format((float)1.00, 2, '.', '') ; 
+     $versionCount =     number_format((float)$versionCount, 2, '.', '') ?? number_format((float)1.00, 2, '.', '') ;
 
     //Sample Report
 
@@ -59,10 +59,26 @@
                     ->with('packaging')
                     ->get();
   $containersCount = 0;
-  foreach ($containers as $container){ 
-  foreach ($container->packaging as $packagingProfile){ 
+  foreach ($containers as $container){
+  foreach ($container->packaging as $packagingProfile){
     $containersCount++;
     }}
+
+    $ApiDetailName=[];
+    $ApiLot=[];
+    $APIDetailSource=[];
+
+    foreach ($sampleReport->sample->protocol->protocolApiDetails as $api)
+    {
+        $ApiDetailName[] = ApiDetail::where('ApiDetailID', $api->APIDetailID)->first()->ApiDetailName;
+        $ApiLot[] = $api->BatchNo ;
+        $APIDetailSource[] = ApiDetail::where('ApiDetailID', $api->APIDetailID)->first()->APIDetailSource;
+    }
+
+        $ApiDetailName =  array_unique($ApiDetailName) ?? [];
+        $ApiLot =  array_unique($ApiLot) ?? [];
+        $APIDetailSource =  array_unique($APIDetailSource) ?? [];
+
 @endphp
 
 <!DOCTYPE html>
@@ -73,9 +89,9 @@
     <meta charset="utf-8">
     <style type="text/css">
     @page {
-    size: A4 landscape; 
-    margin: 15mm 20mm 15mm 20mm; 
-  
+    size: A4 landscape;
+    margin: 2mm 2mm 2mm 2mm;
+
 }
 
         @font-face {
@@ -97,7 +113,7 @@
         td.white {
             background-color: #ffffff;
             color: #000000;
-            font-size: 10px;
+            font-size: 8px;
             font-weight: 500;
             border: 1px solid #000000;
             padding: 1px;
@@ -126,11 +142,11 @@
             z-index: 9999; /* Ensure footer is on top */
         }
         @media print {
-            .page-break { 
+            .page-break {
                 page-break-before: always;
-                margin-top:220px
+                margin-top:220px;
             }
-           
+
         }
     </style>
 </head>
@@ -248,9 +264,7 @@
                                             <tr>
                                                 <th align="left">Name Of the API:</th>
                                                 <td align="left" colspan="3">
-                                                    @foreach ($sampleReport->sample->protocol->protocolApiDetails->pluck('APIDetailID') as $api)
-                                                        {{ ApiDetail::where('ApiDetailID', $api)->first()->ApiDetailName }},
-                                                    @endforeach
+                                                   {{ implode(",",$ApiDetailName) ?? '' }}
                                                 </td>
                                                 <th align="left">Reason of the Stability:</th>
                                                 <td align="left" colspan="3">
@@ -259,13 +273,24 @@
                                             </tr>
 
                                             <tr>
+
+
                                                 <th align="left">API Manufacturer:</th>
-                                                <td align="left" colspan="5" style="width:40%">
-                                                    @foreach ($sampleReport->sample->protocol->protocolApiDetails->pluck('APIDetailID') as $api)
-                                                        {{ ApiDetail::where('ApiDetailID', $api)->first()->APIDetailSource }},
-                                                    @endforeach
+                                                <td align="left" colspan="3">
+                                                    {{ implode(",",$APIDetailSource) ?? '' }}
+                                                </td>
+                                                <th align="left">API Lot No:</th>
+                                                <td align="left" colspan="3">
+                                                    {{ implode(",",$ApiLot) ?? '' }}
                                                 </td>
 
+
+                                            </tr>
+                                            <tr>
+                                                <th align="left">Mfg. & Packaging Site:</th>
+                                                <td align="left" colspan="5" style="width:40%">
+                                                    ACI HealthCare Limited, Sonargaon Museum Gate-1 Road, Treepordi, Sonargaon, Narayanganj, 1440, Bangladesh (BGD)
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th align="left">Description of Pack:</th>
@@ -276,14 +301,15 @@
 
                                             @forelse ($containers as $container)
                                                     @foreach ($container->packaging as $key => $packagingProfile)
-                                                  
-                                                        
+
+
                                                         <tr>
-                                                            @if ($key==0)
-                                                                
+                                                            @if ($loop->first && $loop->parent->first)
+
+
                                                             <th align="left" style="width:20%" rowspan="{{ $containersCount }}">Description of the
                                                                 Primary Packaging Material</th>
-                                                                
+
                                                             @endif
                                                             <td align="left" colspan="5">
                                                                 <p><strong>{{ $packagingProfile->PackagingName }}</strong></p>
@@ -299,7 +325,7 @@
                                                     @empty
                                             @endforelse
 
-                                           
+
                                         </table>
                                     </center>
                                 </th>
@@ -314,7 +340,7 @@
                                             class="white" style="margin-top:2px; margin-top:3%;">
                                             <thead>
                                                 <tr>
-                                                  
+
                                                     <th rowspan="2">Tests</th>
                                                     <th rowspan="2">Specification</th>
                                                     <th colspan="{{ count($duration) }}">Stability Study Data(Months)
@@ -328,7 +354,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                               
+
 
                                                 @forelse ($sampleReport->sampleReportDetails as $detail)
 
@@ -388,10 +414,10 @@
                                                         @if (str_contains(SubTest::where('SubTestID', $detail->SubTestID)->first()['SubTestName'], 'Date') ||
                                                                 str_contains(SubTest::where('SubTestID', $detail->SubTestID)->first()['SubTestName'], 'AR No'))
                                                             <tr>
-                                                                <th colspan="2" style="text-align: center">{{ SubTest::where('SubTestID', $detail->SubTestID)->first()['SubTestName'] }}</th>
+                                                                <td colspan="2" style="text-align: center">{{ SubTest::where('SubTestID', $detail->SubTestID)->first()['SubTestName'] }}</td>
                                                                 <!-- <td>{{ $detail->Specification }}</td> -->
                                                                 @foreach ($detail->Value as $key => $item)
-                                                                    <th>{{ $item ?? 'N/A' }}</th>
+                                                                    <td>{{ $item ?? 'N/A' }}</td>
                                                                 @endforeach
                                                             </tr>
                                                         @endif
@@ -399,10 +425,10 @@
                                                         @if (str_contains(Test::where('TestID', $detail->TestID)->first()['TestName'], 'Date') ||
                                                                 str_contains(Test::where('TestID', $detail->TestID)->first()['TestName'], 'AR No'))
                                                             <tr>
-                                                                <th colspan="2" style="text-align: center">{{ Test::where('TestID', $detail->TestID)->first()['TestName'] }}</th>
-                                                              
+                                                                <td colspan="2" style="text-align: center">{{ Test::where('TestID', $detail->TestID)->first()['TestName'] }}</td>
+
                                                                 @foreach ($detail->Value as $key => $item)
-                                                                    <th>{{ $item ?? 'N/A' }}</th>
+                                                                    <td>{{ $item ?? 'N/A' }}</td>
                                                                 @endforeach
                                                             </tr>
                                                         @endif
@@ -447,7 +473,7 @@
                                                 </ol>
                                                 </p>
                                         <!--Signature -->
-                                        <div 
+                                        <div
                                             style=" border:0px solid #000; margin-bottom:50px;">
                                             <table border="1" width="1000px" cellspacing="1" cellpadding="3"
                                                 class="white">
