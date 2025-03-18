@@ -21,9 +21,16 @@
             <input type="text" class="form-control" id="Headline" name="Headline" placeholder="Headline" required value="{{ isset($sample) ? $sample->Headline : '' }}">
         </div> -->
         <div class="col mb-2">
-        <label for="SpecificationNo<" class="form-label">Specification No</label><span style="color: red">*</span>
-        <input type="text" class="form-control" id="SpecificationNo" name="SpecificationNo" placeholder="SpecificationNo" required value="{{ isset($sample) ? $sample->SpecificationNo : '' }}">
-        </div>
+            <label class="form-label" for="ProtocolID">Protocol</label><span style="color: red">*</span>
+            <select id="ProtocolID" class="select2 form-select custom-select" name="ProtocolID" required>
+                <option value="" selected disabled>Select Protocol</option>
+                @foreach (@App\Models\Protocol::all() as $protocol)
+                <option value="{{ $protocol->ProtocolID }}" {{ isset($sample) ? $sample->ProtocolID == $protocol->ProtocolID  ? 'selected' : '' : ''}}>
+                    {{ $protocol->Title.'('.'STB/PROT/' . sprintf('%04d', $protocol->ProtocolID). ')' }}
+                </option>
+                @endforeach
+            </select>
+    </div>
     </div>
 
    <div class="row g-2">
@@ -39,15 +46,8 @@
         </select>
     </div>
     <div class="col mb-2">
-        <label class="form-label" for="ProtocolID">Protocol</label><span style="color: red">*</span>
-        <select id="ProtocolID" class="select2 form-select custom-select" name="ProtocolID" required>
-            <option value="" selected disabled>Select Protocol</option>
-            @foreach (@App\Models\Protocol::all() as $protocol)
-            <option value="{{ $protocol->ProtocolID }}" {{ isset($sample) ? $sample->ProtocolID == $protocol->ProtocolID  ? 'selected' : '' : ''}}>
-                {{ $protocol->Title }}
-            </option>
-            @endforeach
-        </select>
+        <label for="SpecificationNo" class="form-label">Specification No</label><span style="color: red">*</span>
+        <input type="text" class="form-control" id="SpecificationNo" name="SpecificationNo" placeholder="SpecificationNo" required value="{{ isset($sample) ? $sample->SpecificationNo : '' }}">
     </div>
   </div>
 
@@ -73,7 +73,7 @@
         </div>
     </div>
 
-  
+
 
     <div class="row g-2">
         <div class="col mb-2">
@@ -86,12 +86,7 @@
         </div>
     </div>
 
-    <!-- <div class="row g-2">
-        <div class="col mb-4">
-            <label class="form-label" for="note">Note</label><span style="color: red">*</span>
-            <textarea id="note" name="Note" class="form-control" rows="5" placeholder="Note" required>{{ isset($sample) ? $sample->Note : '' }}</textarea>
-        </div>
-    </div> -->
+
 
     <button type="submit" class="btn btn-primary mt-2">Save changes</button>
 
