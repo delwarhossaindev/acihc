@@ -5,7 +5,7 @@
     @endphp
     <thead>
         <tr>
-            <th>Batch</th>
+            <th>Batch Type</th>
             <th>Strength</th>
             <th>Batch No.</th>
             <th>Batch Size</th>
@@ -25,7 +25,9 @@
                 <td align="center">{{ $batch->BatchNo }}</td>
                 <td align="center">{{ $batch->BatchSize }}</td>
                 <td align="center">{{ \Carbon\Carbon::parse($batch->MfgDate)->toFormattedDateString() }}</td>
-                <td align="center">{{ \Carbon\Carbon::parse($batch->SIDate)->toFormattedDateString() }}</td>
+                <td align="center">
+                    {{-- {{ \Carbon\Carbon::parse($batch->SIDate)->toFormattedDateString() }} --}}
+                </td>
             </tr>
         @empty
         @endforelse

@@ -3,10 +3,10 @@ style="margin-top:2px;">
 <thead>
     <tr>
         <th>Packaging Material</th>
-        <th>Components</th>
+        <th>Details information</th>
     </tr>
 </thead>
-@php 
+@php
   $containerIDs = @App\Models\ProtocolSkuPack::where('ProtocolID',$protocol->ProtocolID)->pluck('ContainerID')->toArray();
   $containers = @App\Models\Container::whereIn('ContainerID',array_unique($containerIDs))
                     ->with('packaging')

@@ -4,7 +4,7 @@
             <th>Strength</th>
             <th>No. of units per packs</th>
             <th>Type of Packing</th>
-            <th>Container / Closure system</th>
+            <th>Container / Closure system / Blister</th>
         </tr>
     </thead>
     <tbody>

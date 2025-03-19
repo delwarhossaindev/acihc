@@ -179,7 +179,7 @@
 
 
                                     </div>
-                                  
+
 
                                     <div style="page-break-before: always; text-align: center;">
                                         <span style=" page-break-before: always;"></span>
@@ -190,9 +190,9 @@
 
                                         @include('system.protocol.report.stp')
 
-                                     
+
                                         <p style="text-align: start;"> <b>Note :</b> Current approved version to be followed at the time of execution.</p>
-                                        
+
 
                                         <p style="text-align:left; font-size:20px; font-weight:600">8. API Details:</p>
 
@@ -257,6 +257,10 @@
                                         </div>
 
                                         @include('system.protocol.report.stability_study')
+                                        <br>
+
+                                        <img src="{{ asset('table.png') }}" alt="Table Image" style="width:99%; height: 600px;">
+
 
 
                                         <div style="float:left; width:99%; border:0px solid #000;">
