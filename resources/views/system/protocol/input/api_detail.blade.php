@@ -71,9 +71,11 @@
         </div>
 
         <div class="modal-footer">
-        @if(isset($protocol->ProtocolStatusID) && $protocol->ProtocolStatusID == 4)
-        <button data-toggle='modal' data-target='#dynamicApprovalModal'  class='btn btn-primary  dynamic-approval-modal-btn ajax-approval-modal-btn'>Save changes</button>
-        @else
+            @if(isset($protocol->ProtocolStatusID) && $protocol->ProtocolStatusID == 4)
+
+            <button type="submit" class="btn btn-primary" id="saveChangesBtnApiDetails" style="visibility: hidden;">Save changes</button>
+            <button data-toggle='modal' data-target='#dynamicApprovalModal'  class='btn btn-primary  dynamic-approval-modal-btn ajax-approval-modal-btn'>Save changes</button>
+            @else
         <button type="submit" class="btn btn-primary">Save changes</button>
         @endif
         </div>

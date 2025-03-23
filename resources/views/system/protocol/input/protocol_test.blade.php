@@ -154,7 +154,7 @@
                     </select>
                     <div class="invalid-tooltip">Required</div>
                 </div>
-              
+
                 @forelse ($protocol->product->skus as $key => $item)
                 <div class="col mt-1">
                     <label for="">Unit Per Test</label><span style="color: red">({{ App\Models\ProductDetail::where('SkuID',$item->SkuID)->first()['ProductStrength'] }}) mg</span>
@@ -178,12 +178,14 @@
     <div class="flaot-right">
         <div class="row">
             <div class="col-md-3">
-            @if(isset($protocol->ProtocolStatusID) && $protocol->ProtocolStatusID == 4)
-        <button data-toggle='modal' data-target='#dynamicApprovalModal'  class='btn btn-primary  dynamic-approval-modal-btn ajax-approval-modal-btn'>Save changes</button>
-        @else
+                @if(isset($protocol->ProtocolStatusID) && $protocol->ProtocolStatusID == 4)
+
+                <button type="submit" class="btn btn-primary" id="saveChangesBtnTest" style="visibility: hidden;">Save changes</button>
+                <button data-toggle='modal' data-target='#dynamicApprovalModal'  class='btn btn-primary  dynamic-approval-modal-btn ajax-approval-modal-btn'>Save changes</button>
+                @else
         <button type="submit" class="btn btn-primary disabled-button" style="margin-top: 20px;" {{ $protocol->tests->count() > 0 ? '' : 'disabled' }}>Save Changes</button>
         @endif
-                
+
             </div>
         </div>
     </div>

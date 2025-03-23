@@ -44,7 +44,7 @@ class ProtocolController extends Controller
                         ->where('protocol_id', $protocol->ProtocolID)
                         ->lockForUpdate()
                         ->max('version_no');
-                    $versionCount =     number_format((float)$versionCount, 2, '.', '') ?? number_format((float)1.00, 2, '.', '') ;     
+                    $versionCount =     number_format((float)$versionCount, 2, '.', '') ?? number_format((float)1.00, 2, '.', '') ;
 
                     return 'STB/PROT/' . sprintf('%04d', $protocol->ProtocolID) . '; Version: ' . $versionCount;
                 })
@@ -153,7 +153,7 @@ class ProtocolController extends Controller
                 ->lockForUpdate()
                 ->max('version_no');
 
-              
+
 
             // If no version exists, set it to 1.00; otherwise, increment by 0.01
 
@@ -185,6 +185,7 @@ class ProtocolController extends Controller
      */
     public function storeProtocolAPIDetail(Protocol $protocol, Request $request)
     {
+
         $request->validate([
             'ApiID'   => 'required',
             'ExpDate' => 'required',
@@ -226,7 +227,7 @@ class ProtocolController extends Controller
      */
     public function storeProtocolPackagingProfile(Protocol $protocol, Request $request)
     {
-
+      
         $protocol->storeProtocolPackagingProfile($protocol, $request);
 
         Toastr::success('Packaging profile information added successfully!', 'Success');
@@ -287,10 +288,10 @@ class ProtocolController extends Controller
                 }
             }
 
-           
+
 
             foreach ($request->test as $value) {
-           
+
                 $ProtocolTestPackBottle                 = new ProtocolTestPackBottle;
                 $ProtocolTestPackBottle->ProtocolID     = $protocol->ProtocolID;
                 $ProtocolTestPackBottle->PackID         = json_encode($value);
@@ -326,7 +327,7 @@ class ProtocolController extends Controller
         }
 
         foreach ($request->test as $value) {
-           
+
             $ProtocolTestPackBottle                 = new ProtocolTestPackBottle;
             $ProtocolTestPackBottle->ProtocolID     = $protocol->ProtocolID;
             $ProtocolTestPackBottle->PackID         = json_encode($value);
@@ -335,8 +336,8 @@ class ProtocolController extends Controller
             break;
         }
 
-      
-      
+
+
 
         Toastr::success('Test information added successfully!', 'Success');
 
@@ -345,7 +346,7 @@ class ProtocolController extends Controller
 
     public function protocolChamberDesignOld(Protocol $protocol, Request $request)
     {
-        
+
 
         $data  = $request->all();
         $title = $data['title'];
@@ -395,7 +396,7 @@ class ProtocolController extends Controller
         $PlaceboAdditional = $data['PlaceboAdditional'];
         unset($data['_token'], $data['title'], $data['PlaceboMonth'], $data['PlaceboAdditional']);
 
-       
+
 
         // Begin transaction
         DB::beginTransaction();
@@ -413,13 +414,13 @@ class ProtocolController extends Controller
 
             // Insert new records
             foreach ($data as $index => $value) {
-              
+
                 $skuidCount          = isset($value['SkuID'])? count($value['SkuID']): count($value['PlaceboSkuID']);
                 $StudyTypeMonthCount = count($value['StudyTypeMonth']);
                 $chunkSize           = $StudyTypeMonthCount / $skuidCount;
                 $finalMonth          = array_chunk($value['StudyTypeMonth'], $chunkSize);
-    
-              if(isset($value['SkuID'])){   
+
+              if(isset($value['SkuID'])){
                 foreach ($value['SkuID'] as $key => $skuID) {
                     $protocol->protocolSkuUnitPack()->create([
                         'SkuID'      => $skuID,
@@ -430,7 +431,7 @@ class ProtocolController extends Controller
                 }
               }
 
-              if(isset($value['PlaceboSkuID'])){   
+              if(isset($value['PlaceboSkuID'])){
                 foreach ($value['PlaceboSkuID'] as $key => $skuID) {
                     $protocol->protocolSkuUnitPack()->create([
                         'SkuID'      => $skuID,
@@ -713,7 +714,6 @@ class ProtocolController extends Controller
     public function reasonStore(Protocol $protocol, Request $request)
     {
         try {
-
             $validated = $request->validate([
                 'ProtocolID' => 'required',
                 'Reason'     => 'required|string|max:255',
@@ -722,66 +722,37 @@ class ProtocolController extends Controller
             DB::beginTransaction();
 
             DB::table('ProtocolHistoryReason')->insert([
-                    'ProtocolID' => $request->ProtocolID,
-                    'Reason'  => $request->Reason,
-                    'CreatedBy'  => auth()->user()->id,
-                    'CreatedAt'  => now(),
-                ]);
-
-            // $protocolPreviousData = Protocol::findOrFail($validated['ProtocolID']);
-
-            // $protocolMasterStore = $protocol->storeProtocol($protocolPreviousData);
-
-            // $protocolNewData                     = Protocol::findOrFail($protocolMasterStore->ProtocolID);
-            // $protocolNewData->PreviousProtocolID = $validated['ProtocolID'];
-            // $protocolNewData->Reason             = $validated['Reason'];
-            // $protocolNewData->save();
-
-            // $protocol->cloneProtocolAPIDetail($protocolNewData, $protocolPreviousData);
-            // $protocol->cloneProtocolProductDetails($protocolNewData, $protocolPreviousData);
-
-            // $protocol->cloneProtocolSkuContainerType($protocolNewData, $protocolPreviousData);
-            // $protocol->cloneProtocolPackagingProfile($protocolNewData, $protocolPreviousData);
-            // $protocol->cloneProtocolStabilityStudy($protocolNewData, $protocolPreviousData);
-
-            // $this->protocolBatchDesign($protocolNewData, $protocolPreviousData);
-            // $this->protocolPlaceboDesign($protocolNewData, $protocolPreviousData);
-            // $this->protocolChamberDesign($protocolNewData, $protocolPreviousData);
-            // $this->storeProtocolTestDetail($protocolNewData, $protocolPreviousData);
-
-            // DB::transaction(function () use ($protocolPreviousData, $protocolNewData) {
-
-            //     $currentVersion = DB::table('ProtocolVersion')
-            //         ->where('protocol_id', $protocolPreviousData->ProtocolID)
-            //         ->lockForUpdate()
-            //         ->max('version_no');
-
-            //     $converted = number_format(floor($currentVersion), 2);
-
-            //     $newVersion = $currentVersion ? number_format($converted + 1.00, 2, '.', '') : '1.00';
-
-                // Insert the new version
-                // DB::table('ProtocolVersion')->insert([
-                //     'protocol_id' => $protocolNewData->ProtocolID,
-                //     'version_no'  => $newVersion,
-                //     'created_at'  => now(),
-                //     'created_by'  => auth()->user()->id,
-                // ]);
-            // });
+                'ProtocolID' => $request->ProtocolID,
+                'Reason'     => $request->Reason,
+                'CreatedBy'  => auth()->user()->id,
+                'CreatedAt'  => now(),
+            ]);
 
             DB::commit();
 
-            Toastr::success('Reason updated successfully!', 'Success');
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Reason updated successfully!',
+                ]);
+            }
+
+
         } catch (\Exception $e) {
-
             DB::rollback();
-
             Log::error('Error in reasonStore: ' . $e->getMessage(), ['exception' => $e]);
 
-            Toastr::error('An error occurred while updating the reason.', 'Error');
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'An error occurred while updating the reason.',
+                ], 500);
+            }
+
+
         }
 
-        return redirect()->back();
+        //return redirect()->back();
     }
 
 }

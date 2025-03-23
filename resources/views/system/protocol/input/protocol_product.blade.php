@@ -1,4 +1,4 @@
-@php 
+@php
 if(isset($protocol)){
     $product = $protocol->product;
 }
@@ -78,14 +78,16 @@ if(isset($protocol)){
         <span class="btn btn-success btn-xs add-product"><i class="fa fa-add"></i></span>
     </div>
     <div class="modal-footer">
-    @if(isset($protocol->ProtocolStatusID) && $protocol->ProtocolStatusID == 4)
+        @if(isset($protocol->ProtocolStatusID) && $protocol->ProtocolStatusID == 4)
+
+        <button type="submit" class="btn btn-primary" id="saveChangesBtnProduct" style="visibility: hidden;">Save changes</button>
         <button data-toggle='modal' data-target='#dynamicApprovalModal'  class='btn btn-primary  dynamic-approval-modal-btn ajax-approval-modal-btn'>Save changes</button>
         @else
         <button type="submit" class="btn btn-primary">Save changes</button>
         @endif
     </div>
 </div>
-@else 
+@else
 <p>Please create a protocol first!</p>
 @endif
 
@@ -97,7 +99,7 @@ if(isset($protocol)){
             $(this).parent().parent().find(".product-clone").clone().insertBefore($(this).parent()).removeClass("product-clone");
             $('.btn-del-product').fadeIn();
             $(this).parent().parent().find(".btn-del-product").click(function(e) {
-                $(this).parent().parent().remove(); 
+                $(this).parent().parent().remove();
             });
         });
     });

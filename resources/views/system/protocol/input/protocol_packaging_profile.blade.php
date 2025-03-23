@@ -1,4 +1,4 @@
-@php 
+@php
    if(isset($protocol)){
         $product = $protocol->product;
     }
@@ -8,7 +8,7 @@
 <div class="row g-3">
     @if($protocol->packagings->count() > 0)
     @foreach ($protocol->packagings as $key => $packaging)
-    @php 
+    @php
         $primary = $packaging->primary->pluck('ContainerID');
         $secondary = $packaging->secondary->pluck('ContainerID');
         $tertiary = $packaging->tertiary->pluck('ContainerID');
@@ -65,7 +65,7 @@
             <div class="invalid-tooltip">This field is required</div>
         </div>
     @endforeach
-    @endif 
+    @endif
 
     <div class="row select_packaging_matirials duplicable">
         <div class="col-md-1 mt-3">
@@ -126,14 +126,16 @@
         <span class="btn btn-success btn-xs" id="add-packaging-profile"><i class="fa fa-add"></i></span>
     </div>
     <div class="modal-footer">
-    @if(isset($protocol->ProtocolStatusID) && $protocol->ProtocolStatusID == 4)
+        @if(isset($protocol->ProtocolStatusID) && $protocol->ProtocolStatusID == 4)
+
+        <button type="submit" class="btn btn-primary" id="saveChangesBtnPackagingProfile" style="visibility: hidden;">Save changes</button>
         <button data-toggle='modal' data-target='#dynamicApprovalModal'  class='btn btn-primary  dynamic-approval-modal-btn ajax-approval-modal-btn'>Save changes</button>
         @else
         <button type="submit" class="btn btn-primary">Save changes</button>
         @endif
     </div>
 </div>
-@else 
+@else
 <p>Please create a protocol first!</p>
 @endif
 
@@ -151,7 +153,7 @@
             $(this).parent().parent().find(".tertiary-box select").select2();
             $('.btn-del-packaging').fadeIn();
             $(this).parent().parent().find(".btn-del-packaging").click(function(e) {
-                $(this).parent().parent().remove(); 
+                $(this).parent().parent().remove();
             });
             $( ".name0" ).each(
                 function( index ) {

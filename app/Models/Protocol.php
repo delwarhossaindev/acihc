@@ -201,7 +201,7 @@ class Protocol extends Model implements Auditable
             ProtocolAPIDetail::where('ProtocolID', $protocol->ProtocolID)->delete();
         }
 
-       
+
 
         foreach ($request->ApiID as $key => $value) {
             if (isset($request['BatchNo'][$key])) {
@@ -218,8 +218,6 @@ class Protocol extends Model implements Auditable
 
     public function storeProtocolProductDetails($protocol, $request): Protocol
     {
-
-
 
 
         if ($protocol->protocolProductDetails()->count() > 0) {
@@ -416,7 +414,7 @@ public function cloneProtocolProductDetails($protocol, $request): Protocol
     $SkuID = ProtocolProductDetail::where('ProtocolID', $request->ProtocolID)->get();
 
     foreach ($SkuID as $key => $value) {
-      
+
         if (isset( $value->SpecificationNo) && isset( $value->STPNo)) {
             ProtocolProductDetail::create([
                 'ProtocolID' => $protocol->ProtocolID,
@@ -433,14 +431,14 @@ public function cloneProtocolProductDetails($protocol, $request): Protocol
 
 public function cloneProtocolSkuContainerType($protocol, $request): Protocol
 {
-    
+
     if ($protocol->sku->count() > 0) {
         $ProtocolSkuPackID = $protocol->sku->pluck('ProtocolSkuPackID');
         ProtocolSkuPackContainer::whereIn('ProtocolSkuPackID', $ProtocolSkuPackID)->delete();
         ProtocolSkuPack::where('ProtocolID', $protocol->ProtocolID)->delete();
     }
 
-   
+
     $ProtocolSkuPackID = $request->sku->pluck('ProtocolSkuPackID');
     $ProtocolSkuPack = ProtocolSkuPack::where('ProtocolID', $request->ProtocolID)->get();
     $ProtocolSkuPackContainer = ProtocolSkuPackContainer::whereIn('ProtocolSkuPackID', $ProtocolSkuPackID)->get();
@@ -462,7 +460,7 @@ public function cloneProtocolSkuContainerType($protocol, $request): Protocol
             'SkuID' => $value2->SkuID,
             'ContainerID' => $value2->ContainerID
         ]);
-        
+
     }
 
 

@@ -70,7 +70,7 @@
         <label class="form-label" for="summernote">Note</label>
         <textarea id="note" name="Note" class="form-control" rows="3" placeholder="Note" required>{{ isset($protocol) ? $protocol->Note : ''}}</textarea>
     </div>
-    <!-- <div class="col-4"> 
+    <!-- <div class="col-4">
     <label class="form-label" >Review By (One)</label>
     <select class="form-control custom-select" name="ReviewByOne" required>
             <option value="" disabled selected>Select Review By</option>
@@ -79,7 +79,7 @@
             @endforeach
         </select>
     </div>  -->
-    <!-- <div class="col-4"> 
+    <!-- <div class="col-4">
         <label class="form-label" >Review By (Two)</label>
         <select class="form-control custom-select" name="ReviewByTwo" required>
             <option value="" disabled selected>Select Review By</option>
@@ -98,14 +98,16 @@
         </select>
         </div> -->
     <div class="modal-footer">
-        
+
         @if(isset($protocol->ProtocolStatusID) && $protocol->ProtocolStatusID == 4)
+
+        <button type="submit" class="btn btn-primary" id="saveChangesBtnFirst" style="visibility: hidden;">Save changes</button>
         <button data-toggle='modal' data-target='#dynamicApprovalModal'  class='btn btn-primary  dynamic-approval-modal-btn ajax-approval-modal-btn'>Save changes</button>
         @else
         <button type="submit" class="btn btn-primary">Save changes</button>
         @endif
 
-       
+
     </div>
 </div>
 
