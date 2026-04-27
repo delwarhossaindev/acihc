@@ -34,7 +34,9 @@
 
 [ 🚀 ইনস্টলেশন ](#-ইনস্টলেশন) • [ ⚙️ কনফিগ ](#️-কনফিগারেশন) • [ 🗄️ ডাটাবেজ ](#️-ডাটাবেজ-সেটআপ) • [ ▶️ চালু ](#️-অ্যাপ-চালু-করুন)
 
-[ 📁 স্ট্রাকচার ](#-প্রজেক্ট-স্ট্রাকচার) • [ 🔐 লগইন ](#-ডিফল্ট-লগইন) • [ 📸 স্ক্রিনশট ](#-স্ক্রিনশট) • [ 🗺️ রোডম্যাপ ](#️-রোডম্যাপ)
+[ 🔄 ওয়ার্কফ্লো ](#-মূল-ওয়ার্কফ্লো) • [ 📚 গ্লসারি ](#-ডোমেইন-গ্লসারি) • [ 📁 স্ট্রাকচার ](#-প্রজেক্ট-স্ট্রাকচার) • [ 🔐 লগইন ](#-ডিফল্ট-লগইন)
+
+[ 📸 স্ক্রিনশট ](#-স্ক্রিনশট) • [ 🗺️ রোডম্যাপ ](#️-রোডম্যাপ)
 
 [ 📊 পরিসংখ্যান ](#-প্রজেক্ট-পরিসংখ্যান) • [ ❓ প্রশ্নোত্তর ](#-প্রায়শই-জিজ্ঞাসিত-প্রশ্ন) • [ 📚 ডকস ](#-অতিরিক্ত-ডকুমেন্টেশন) • [ 📄 লাইসেন্স ](#-লাইসেন্স)
 
@@ -46,7 +48,19 @@
 
 ## 🌟 প্রকল্প পরিচিতি
 
-> 💡 **এক নজরে:** **ACI Healthcare** একটি Laravel-ভিত্তিক enterprise-grade ফার্মাসিউটিক্যাল ম্যানেজমেন্ট সিস্টেম, যেখানে প্রোডাক্ট, প্রোটোকল, ব্যাচ, স্যাম্পল, প্রস্তুতকারক ও মার্কেট - সবকিছু একসাথে ম্যানেজ করা যায়।
+> 💡 **এক নজরে:** **ACI Healthcare (ACIHC)** একটি Laravel 10-ভিত্তিক enterprise-grade **ফার্মাসিউটিক্যাল প্রোটোকল ও স্যাম্পল টেস্টিং ম্যানেজমেন্ট সিস্টেম**। মূলত **Stability Testing Protocol Lifecycle** management — প্রোডাক্টের stability study design, multi-stage approval workflow, batch tracking, sample report generation ও pharmaceutical industry compliance handle করে।
+
+### 🏥 কোন সমস্যার সমাধান করে?
+
+ফার্মাসিউটিক্যাল ইন্ডাস্ট্রিতে প্রতিটি প্রোডাক্টের **stability testing** ICH Q1A guideline অনুযায়ী perform করতে হয় — accelerated, intermediate ও long-term condition-এ। এই process-এ involve থাকে:
+
+- 📋 জটিল protocol document (50+ field)
+- 👥 Multi-level approval chain (reviewer → approver → final)
+- 🏭 Multiple manufacturer ও market জুড়ে batch deployment
+- 🧪 প্রতিটি sample-এর scheduled testing ও report generation
+- 📜 Regulatory compliance-এর জন্য complete audit trail
+
+ACIHC এই সম্পূর্ণ workflow-কে **একটি single platform**-এ centralize করে, ম্যানুয়াল paper-based work ও Excel-driven chaos-এর জায়গায় একটি **traceable, auditable, role-controlled** digital system দেয়।
 
 <table>
 <tr>
@@ -54,45 +68,239 @@
 
 ### 🎨 কেন এই সিস্টেম?
 
-🔹 সম্পূর্ণ **audit trail** সহ পরিবর্তন ট্র্যাকিং
-🔹 **Multi-stage approval** ওয়ার্কফ্লো
-🔹 **Role-based access control** (RBAC)
-🔹 তিন-তিনটা ডাটাবেজ - এক কোডবেজ
+🔹 ICH Q1A **stability protocol** workflow built-in
+🔹 **Multi-stage approval** tree (reviewer + approver hierarchy)
+🔹 প্রতি ফিল্ড পরিবর্তনের **পূর্ণ audit trail** (Owen-IT)
+🔹 **Role-based access control** (Laratrust)
+🔹 এক ক্লিকে **PDF report** generation (mPDF)
+🔹 তিন-তিনটা ডাটাবেজ — **এক কোডবেজ**
 
 </td>
 <td width="50%" align="center">
 
 ### 🏆 মূল লক্ষ্য
 
-🔸 ফার্মা ইন্ডাস্ট্রির **জটিলতা সহজ** করা
-🔸 **নিরাপদ ও নির্ভরযোগ্য** ডেটা ম্যানেজমেন্ট
-🔸 **বাংলা ও ইংরেজি** - উভয় ভাষায় সাপোর্ট
-🔸 **প্রোডাকশন-রেডি** আর্কিটেকচার
+🔸 ফার্মা ইন্ডাস্ট্রির **regulatory compliance** নিশ্চিত করা
+🔸 Stability testing-এর **manual workflow** সম্পূর্ণ ডিজিটাল
+🔸 **Cross-functional approval** workflow streamline
+🔸 Sample-to-report **complete traceability**
+🔸 **Production-ready** enterprise architecture
+🔸 **108 ফাইল** অপ্টিমাইজড — fast & reliable
 
 </td>
 </tr>
 </table>
 
+### 📊 প্রজেক্ট পরিধি (Scale)
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  🗂️  63 Eloquent Models       →  Domain entities          │
+│  🎮  27 Controllers           →  Business logic           │
+│  📜  80+ Migrations           →  Database schema          │
+│  🛣️  5 Route files            →  Modular routing          │
+│  📝  16 Form Requests         →  Input validation         │
+│  🌱  7 Seeders                →  Demo data                │
+│  🌿  ~3000+ Lines schema       →  Comprehensive coverage   │
+└──────────────────────────────────────────────────────────┘
+```
+
 ---
 
 ## ✨ ফিচারসমূহ
 
+### 🎯 মূল মডিউল ওভারভিউ
+
 <div align="center">
 
-| 🎯 মডিউল | 🔍 বর্ণনা | 📊 অবস্থা |
+| 🎯 মডিউল | 🔍 কী করে | 📊 |
 |:---:|:---|:---:|
-| 💊 **প্রোডাক্ট ম্যানেজমেন্ট** | প্রোডাক্ট, প্যাক, প্যাকেজিং, API ডিটেইল, কন্টেইনার | ✅ |
-| 📋 **প্রোটোকল ম্যানেজমেন্ট** | মাল্টি-স্টেজ অনুমোদন, হিস্টোরি ট্র্যাকিং, ব্যাচ লিংকিং | ✅ |
-| 🧬 **ব্যাচ ও স্যাম্পল** | ব্যাচ ট্র্যাকিং, স্যাম্পল রিপোর্ট, কন্ডিশন, প্লাসেবো | ✅ |
-| 🏭 **প্রস্তুতকারক ও মার্কেট** | ম্যানুফ্যাকচারার প্রোফাইল, অঞ্চলভিত্তিক মার্কেট | ✅ |
-| 👥 **রোল ও পারমিশন** | Laratrust দ্বারা ভূমিকা ও অনুমতি ব্যবস্থাপনা | ✅ |
-| 📊 **অডিট ট্রেইল** | প্রতিটি পরিবর্তনের পূর্ণাঙ্গ লগ | ✅ |
-| 📑 **PDF রিপোর্ট** | mPDF দিয়ে স্বয়ংক্রিয় রিপোর্ট জেনারেশন | ✅ |
-| 🔔 **নোটিফিকেশন** | Toastr-ভিত্তিক রিয়েল-টাইম অ্যালার্ট | ✅ |
-| 🌐 **ডাটাটেবল** | সার্ভার-সাইড পেজিনেশন, সার্চ, এক্সপোর্ট | ✅ |
-| 🗄️ **মাল্টি-ডিবি** | MySQL, MSSQL, SQLite - তিনটাই কাজ করে | ✅ |
+| 📋 **Protocol Management** | Stability protocol design, multi-step form, approval tree | ✅ |
+| 🧪 **Sample Management** | Sample CRUD, scheduled testing, condition tracking | ✅ |
+| 📑 **Sample Report** | Test result entry, PDF report, multi-level approval | ✅ |
+| 💊 **Product Master** | Product, API ingredient, pack, packaging hierarchy | ✅ |
+| 🧬 **Batch Tracking** | Batch generation, MFG/EXP date, withdrawal log | ✅ |
+| 🏭 **Manufacturer** | Manufacturer profile + polymorphic address/image | ✅ |
+| 🌍 **Market** | অঞ্চলভিত্তিক market segment management | ✅ |
+| 🏗️ **Container & Pack** | Container, packaging, primary/secondary/tertiary pack | ✅ |
+| 🌡️ **Stability Study** | Chamber design, accelerated/intermediate/long-term | ✅ |
+| ⚗️ **Test & Subtest** | Lab test specification ও sub-test parameter | ✅ |
+| 👥 **Role & Permission** | Laratrust RBAC — fine-grained permission | ✅ |
+| 📊 **Audit Trail** | Owen-IT — প্রতি model change-এর full history | ✅ |
+| 🔐 **Authentication** | Laravel Sanctum + session-based auth | ✅ |
+| 📈 **Activity Log** | User activity log + DataTables view | ✅ |
+| 📑 **PDF Generation** | mPDF — protocol ও sample report PDF | ✅ |
+| 🔔 **Notification** | Toastr — real-time success/error alert | ✅ |
+| 🌐 **DataTables** | Yajra — server-side pagination, search, export | ✅ |
+| 🗄️ **Multi-Database** | MySQL / MSSQL / SQLite — তিনটাই কাজ করে | ✅ |
 
 </div>
+
+---
+
+### 🔬 ডিটেইলড মডিউল ব্রেকডাউন
+
+<details open>
+<summary><b>📋 প্রোটোকল ম্যানেজমেন্ট সিস্টেম</b></summary>
+
+<br>
+
+ICH Q1A guideline অনুযায়ী **stability testing protocol** তৈরি ও manage করার পূর্ণাঙ্গ workflow। প্রোটোকল একটা multi-step form, প্রতি step আলাদা database table-এ store হয়।
+
+**📌 মাল্টি-স্টেপ ফর্ম স্ট্রাকচার:**
+
+```
+1️⃣  Product Detail        →  প্রোডাক্ট, market, manufacturer select
+2️⃣  Container & SKU       →  Primary container ও SKU configuration
+3️⃣  Packaging Profile     →  Primary / Secondary / Tertiary packaging
+4️⃣  Stability Study       →  Accelerated, Intermediate, Long-term study
+5️⃣  Chamber Design        →  Storage chamber month-wise mapping
+6️⃣  Test Specification    →  Lab test ও sub-test list
+7️⃣  API Detail            →  Active Pharmaceutical Ingredient details
+8️⃣  Placebo Design        →  Placebo formulation specification
+9️⃣  Batch Design          →  Batch link ও test schedule
+🔟  Approval Tree         →  Reviewer + approver hierarchy define
+```
+
+**🌳 Approval Tree ফিচার:**
+- 👀 **Reviewer** assign — initial review responsibility
+- ✅ **Approver** assign — final approval authority
+- 🔁 Multi-level approval chain
+- 📊 প্রতি stage-এ status tracking
+- 📝 History reason logging (কেন approve/reject হলো)
+
+**📦 Database Tables (~25টা):**
+`Protocol`, `ProtocolStatus`, `ProtocolApproval`, `ProtocolApprovalTree`, `ProtocolApprovalType`, `ProtocolApprover`, `ProtocolReviewer`, `ProtocolHistoryReason`, `ProtocolProductDetail`, `ProtocolAPIDetail`, `ProtocolBatch`, `ProtocolTest`, `ProtocolSubTest`, `ProtocolSkuPack`, `ProtocolSkuPackContainer`, `ProtocolSkuUnitPack`, `ProtocolSkuTest`, `ProtocolStabilityStudy`, `ProtocolStabilityStudyDetail`, `ProtocolStabilityChamberDesign`, `ProtocolPlaceboDetail`, `ProtocolPackagingPack`, `ProtocolPackPrimary`, `ProtocolPackSecondary`, `ProtocolPackTertiary`
+
+</details>
+
+<details open>
+<summary><b>🧪 স্যাম্পল ও রিপোর্ট ম্যানেজমেন্ট</b></summary>
+
+<br>
+
+প্রোটোকল-এর সাথে linked স্যাম্পল testing ও তার লাইফসাইকেল ম্যানেজমেন্ট।
+
+**🎯 ফিচার:**
+- ➕ **Sample CRUD** — protocol-batch থেকে sample auto-generate
+- 📅 **Scheduled Testing** — month-wise test schedule (0, 1, 3, 6, 9, 12 month etc.)
+- 🌡️ **Condition Tracking** — accelerated (40°C/75% RH), intermediate (30°C/65% RH), long-term (25°C/60% RH)
+- 📊 **Sample Report** — প্রতি test-এর result entry
+- 🌳 **Approval Workflow** — independent reviewer + approver tree
+- 📑 **PDF Export** — formal test report generation
+- 🔍 **Detail Drill-down** — sample → report → test → subtest hierarchy
+
+**📦 Database Tables:**
+`Sample`, `SampleReport`, `SampleReportDetail`, `SampleApprovalTree`, `SampleApprover`, `SampleReviewer`, `SampleApprovalType`
+
+</details>
+
+<details open>
+<summary><b>💊 প্রোডাক্ট ও মাস্টার ডেটা</b></summary>
+
+<br>
+
+প্রোটোকল ও sample-এর foundation — সব master entity।
+
+| 🗂️ Entity | 📝 কী store করে |
+|:---|:---|
+| 💊 **Product** | Pharmaceutical product master (name, code, type) |
+| 📦 **ProductPack** | Pack-wise variant (e.g., 10 tablet, 30 capsule) |
+| 🧪 **APIDetail** | Active Pharmaceutical Ingredient (drug substance) |
+| 🏗️ **Container** | Storage container type (bottle, blister, sachet) |
+| 📦 **Packaging** | Packaging spec ও level |
+| ⚗️ **Test** | Lab test method (assay, dissolution, related substance) |
+| 🧫 **Subtest** | Test-এর sub-component (যেমন individual impurity) |
+| 🌡️ **Condition** | Storage condition (temperature/humidity combo) |
+| 🎯 **StudyType** | Study classification (AC/IN/LT) |
+| 🏭 **Manufacturer** | Producer company profile |
+| 🌍 **Market** | Geographic market region |
+| 💉 **Placebo** | Placebo formulation reference |
+
+</details>
+
+<details open>
+<summary><b>🧬 ব্যাচ ম্যানেজমেন্ট</b></summary>
+
+<br>
+
+প্রোডাকশন ব্যাচ ও তাদের sample lifecycle।
+
+- 🆕 **Batch Creation** — manufacturing date, expiry date, batch size
+- 🔁 **Batch Clone** — existing batch থেকে duplicate তৈরি
+- 📤 **Withdrawal Tracking** — কোন batch কখন withdraw হলো
+- 📊 **Dashboard Widget** — withdrawn batch DataTable display
+- 📥 **Excel Export** — withdrawal history export
+
+</details>
+
+<details open>
+<summary><b>👥 ইউজার, রোল ও পারমিশন</b></summary>
+
+<br>
+
+Laratrust-powered fine-grained access control।
+
+**🎯 কী আছে:**
+- 👨‍💼 **User Management** — admin/staff user CRUD with profile
+- 🎭 **Role Definition** — multiple role create করা যায়
+- 🔑 **Permission** — module-wise granular permission
+- 🌳 **Role-Permission Mapping** — role-এ permission assign
+- 📸 **Profile Image** — polymorphic image relation (Imageable trait)
+- 🏠 **Address** — polymorphic address relation (Addressable trait)
+- 🔐 **Sanctum API Token** — REST API authentication-এর জন্য
+
+</details>
+
+<details open>
+<summary><b>📊 অডিট ট্রেইল ও অ্যাক্টিভিটি লগ</b></summary>
+
+<br>
+
+Regulatory compliance-এর জন্য essential — কে, কখন, কী পরিবর্তন করেছে সব track।
+
+**📌 যে models audit হয়:**
+- ✅ Protocol, SampleReport, User
+- ✅ Test, Subtest, Condition, APIDetail
+- ✅ Container, Packaging
+
+**📈 যা track হয়:**
+- 🕐 Timestamp (created/updated/deleted)
+- 👤 কোন user action নিয়েছে
+- 🔄 Old value → New value (field-wise diff)
+- 🌐 IP address, user agent
+- 📊 Activity log DataTables view-এ available
+
+</details>
+
+<details open>
+<summary><b>🔧 হেল্পার ও ইউটিলিটি</b></summary>
+
+<br>
+
+`app/Helpers/Functions.php`-এ available helper functions:
+
+| 🛠️ Helper | 🔍 কী করে |
+|:---|:---|
+| `domain()` | App-এর domain URL return |
+| `imagePath()` | Image URL formatting |
+| `getSystemSettings()` | Cached system setting lookup |
+| `userActivityLog()` | Recent activity log fetch |
+| `getUserRoleAndPermission()` | Role + permission load with count |
+| `safeUrl()` | XSS-safe URL escaping |
+| `getDynamicButtonLink()` | Inline edit/delete button HTML |
+| `sampleButton()`, `batch_button()` | Module-specific action buttons |
+| `convertJsonToArray()` | JSON helper |
+| `study_month()` | Month → study type (AC/IN/LT) mapping |
+| `get_stability_chamber_month_value()` | Stability chamber data extraction |
+
+**🎁 Trait helpers:**
+- 🏠 `Addressable` — polymorphic address relation
+- 🖼️ `Imageable` — polymorphic image relation
+- 🔔 `HasAlert` — flash message helper
+- ✅ `HasValidation` — model-level validation on create
+
+</details>
 
 ---
 
@@ -254,9 +462,17 @@ php artisan migrate
 
 ```bash
 php artisan db:seed
-# অথবা
+# অথবা — fresh migrate + seed একসাথে
 php artisan demo:import
 ```
+
+**🌱 যে ডেটা seed হয়:**
+- 👨‍💼 Demo users (`admin@admin.com` / `password`)
+- 🎭 Default roles (admin, staff)
+- 🔑 Permission list
+- 🌳 Role-permission mapping
+- ⚙️ System settings
+- 📊 Backup reference data
 
 > 📘 **পূর্ণাঙ্গ ডিবি সেটআপ গাইড:** [SETUP.md](SETUP.md) দেখুন
 
@@ -300,6 +516,152 @@ php artisan route:cache
 php artisan view:cache
 ```
 
+### ⚙️ Custom Artisan Commands
+
+প্রজেক্টে দুটো কাস্টম artisan command আছে:
+
+| 🎯 কমান্ড | 📝 কী করে |
+|:---|:---|
+| `php artisan boost:app` | 🚀 Cache, route, view, config — সব optimize একসাথে |
+| `php artisan demo:import` | 🌱 Fresh migration + demo data seed (development জন্য) |
+
+---
+
+## 🔄 মূল ওয়ার্কফ্লো
+
+### 📋 Protocol Lifecycle
+
+```
+   👤 Admin/Staff
+        │
+        ▼
+   ┌─────────────────────┐
+   │  📝 Create Protocol  │  ← Multi-step form (10 steps)
+   └─────────┬───────────┘
+             │
+             ▼
+   ┌─────────────────────┐
+   │  🌳 Approval Tree    │  ← Reviewer + Approver assign
+   └─────────┬───────────┘
+             │
+             ▼
+   ┌─────────────────────┐         ┌─────────────────────┐
+   │  👀 Reviewer Review  │  ───►   │  ✅ Approver Approve │
+   └─────────┬───────────┘         └─────────┬───────────┘
+             │                                │
+             ▼                                ▼
+   ┌─────────────────────┐         ┌─────────────────────┐
+   │  📊 Status: Active   │  ◄───   │  📑 PDF Generated    │
+   └─────────┬───────────┘         └─────────────────────┘
+             │
+             ▼
+   ┌─────────────────────┐
+   │  🧬 Batch Linking    │
+   └─────────┬───────────┘
+             │
+             ▼
+   ┌─────────────────────┐
+   │  🧪 Sample Generated │  ← Scheduled per condition × month
+   └─────────────────────┘
+```
+
+### 🧪 Sample → Report Lifecycle
+
+```
+   🧬 Batch
+     │
+     ▼
+   🧪 Sample (auto-generated per schedule)
+     │
+     ▼
+   📝 Sample Report Entry (test results)
+     │
+     ▼
+   👀 Reviewer Review
+     │
+     ▼
+   ✅ Approver Approve
+     │
+     ▼
+   📑 Final PDF Report
+```
+
+---
+
+## 📚 ডোমেইন গ্লসারি
+
+ফার্মাসিউটিক্যাল ও stability testing-এর key concept যা এই system বুঝতে দরকার।
+
+<details>
+<summary><b>🧪 Stability Testing — কী এবং কেন?</b></summary>
+
+<br>
+
+ICH Q1A guideline অনুযায়ী প্রতিটা pharmaceutical product market-এ release হওয়ার আগে ও পরে **নির্দিষ্ট condition-এ store করে দেখতে হয়** কত time পরে product-এর quality, potency, ও safety degrade হয়। এর উপর ভিত্তি করেই **expiry date** নির্ধারণ হয়।
+
+</details>
+
+<details>
+<summary><b>🌡️ Study Type — AC, IN, LT কী?</b></summary>
+
+<br>
+
+| Code | নাম | Condition | উদ্দেশ্য |
+|:---:|:---|:---|:---|
+| **AC** | Accelerated | 40°C ± 2°C / 75% RH | দ্রুত degradation দেখা (6 months) |
+| **IN** | Intermediate | 30°C ± 2°C / 65% RH | মাঝারি condition (12 months) |
+| **LT** | Long-term | 25°C ± 2°C / 60% RH | Real-world shelf-life (24-36 months) |
+
+</details>
+
+<details>
+<summary><b>📋 Protocol vs Sample vs Batch — পার্থক্য?</b></summary>
+
+<br>
+
+```
+📋 Protocol  → একটা product-এর জন্য টেস্টিং blueprint (rules)
+              ↓ (links to)
+🧬 Batch     → Production batch (specific MFG date)
+              ↓ (generates)
+🧪 Sample    → Particular condition × month-এর test instance
+              ↓ (produces)
+📑 Report    → Sample-এর actual test result
+```
+
+</details>
+
+<details>
+<summary><b>⚗️ API, Excipient, Placebo — কী?</b></summary>
+
+<br>
+
+- 💊 **API (Active Pharmaceutical Ingredient)** — যে chemical আসলে drug action করে (e.g., Paracetamol)
+- 🥄 **Excipient** — Inactive ingredient (filler, binder)
+- 🍬 **Placebo** — API ছাড়া formulation, control হিসেবে test হয়
+
+</details>
+
+<details>
+<summary><b>🌳 Approval Tree — কী?</b></summary>
+
+<br>
+
+প্রোটোকল বা sample report-কে production-এ যেতে হলে multiple stakeholder-এর approval লাগে। Approval tree-এ **reviewer** (initial check) ও **approver** (final sign-off) সিরিয়ালি/parallel-ভাবে define করা যায়।
+
+</details>
+
+<details>
+<summary><b>📦 Pack hierarchy — Primary/Secondary/Tertiary?</b></summary>
+
+<br>
+
+- 🟢 **Primary Pack** — Drug-এর immediate contact (blister, bottle)
+- 🟡 **Secondary Pack** — Primary pack-এর container (carton)
+- 🔵 **Tertiary Pack** — Bulk shipping unit (corrugated box, pallet)
+
+</details>
+
 ---
 
 ## 📁 প্রজেক্ট স্ট্রাকচার
@@ -308,31 +670,66 @@ php artisan view:cache
 🏠 acihc/
 │
 ├── 📂 app/
-│   ├── ⚙️  Console/Commands/    → আর্টিজান কমান্ড
-│   ├── 🧰 Helpers/              → হেল্পার ক্লাস (Functions, Imageable, ...)
-│   ├── 🎮 Http/Controllers/     → অ্যাডমিন, API, Auth কন্ট্রোলার
-│   ├── 📊 Models/               → Eloquent মডেল (Product, Protocol, ...)
-│   └── 🛡️  Providers/
+│   ├── ⚙️  Console/Commands/        → boost:app, demo:import (2 কমান্ড)
+│   ├── 🧰 Helpers/                  → 5 হেল্পার ক্লাস
+│   │   ├── Functions.php           → 20+ global utility function
+│   │   ├── Addressable.php         → polymorphic address trait
+│   │   ├── Imageable.php           → polymorphic image trait
+│   │   ├── HasAlert.php            → flash message trait
+│   │   └── HasValidation.php       → model validation trait
+│   │
+│   ├── 🎮 Http/Controllers/         → 27 কন্ট্রোলার
+│   │   ├── Admin/                  → 7 admin controller (Dashboard, User, Role, ...)
+│   │   ├── System/                 → 18 business controller (Protocol, Sample, ...)
+│   │   └── Auth/                   → LoginController
+│   │
+│   ├── 📝 Http/Requests/            → 16 form request (validation)
+│   ├── 🛡️  Http/Middleware/         → custom middleware
+│   │
+│   ├── 📊 Models/                   → 63 Eloquent মডেল
+│   │   ├── Protocol*.php           → 25টা protocol-related model
+│   │   ├── Sample*.php             → sample/report models
+│   │   ├── Product, APIDetail      → product master
+│   │   ├── Batch, Manufacturer     → manufacturing
+│   │   └── Container, Packaging    → packaging hierarchy
+│   │
+│   └── 🛡️  Providers/               → service provider
 │
-├── 🔧 config/                   → Laravel কনফিগ
+├── 🔧 config/                       → Laravel + custom config
+│   ├── laratrust.php               → RBAC config
+│   ├── audit.php                   → audit logging config
+│   ├── datatables.php              → DataTables config
+│   └── midia.php                   → media management config
 │
 ├── 🗄️  database/
-│   ├── 📜 migrations/           → স্কিমা মাইগ্রেশন
-│   └── 🌱 seeders/              → ডেমো ডেটা
+│   ├── 📜 migrations/               → 80+ মাইগ্রেশন (~3000 lines)
+│   ├── 🌱 seeders/                  → 7 seeder (User, Role, Permission, ...)
+│   └── 🏭 factories/                → model factory
 │
-├── 🌐 public/                   → ওয়েব রুট
+├── 🌐 public/                       → ওয়েব রুট
+│   ├── admin/                      → admin theme assets
+│   ├── datatable/                  → DataTables JS/CSS
+│   └── images/                     → static images
 │
-├── 🎨 resources/views/          → Blade টেমপ্লেট
+├── 🎨 resources/views/              → Blade টেমপ্লেট
+│   ├── admin/                      → dashboard, user, role, settings
+│   ├── system/                     → protocol, sample, product, batch, ...
+│   ├── auth/                       → login form
+│   ├── report/                     → PDF templates
+│   └── components/                 → reusable Blade components
 │
-├── 🛣️  routes/
-│   ├── 🌍 web.php
-│   ├── 📡 api.php
-│   ├── 📋 protocol.php
-│   ├── 🧪 sample.php
-│   └── ⚙️  system.php
+├── 🛣️  routes/                      → 5 route file (modular)
+│   ├── 🌍 web.php                   → admin/auth routes
+│   ├── 📡 api.php                   → Sanctum-protected API
+│   ├── 📋 protocol.php              → protocol workflow
+│   ├── 🧪 sample.php                → sample/report workflow
+│   ├── ⚙️  system.php               → master data CRUD
+│   ├── 💾 database.php              → DB utilities
+│   ├── 📺 channels.php              → broadcast channels
+│   └── 🖥️  console.php              → artisan closure
 │
-├── 💾 storage/
-└── 🧪 tests/
+├── 💾 storage/                      → logs, cache, uploads
+└── 🧪 tests/                        → PHPUnit tests
 ```
 
 ---
